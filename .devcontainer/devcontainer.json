@@ -1,0 +1,30 @@
+{
+  "name": "WordPress + phpMyAdmin for GitHub Codespace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "LOCAL_WORKSPACE_FOLDER_BASENAME": "${localWorkspaceFolderBasename}"
+    }
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [80, 8080],
+  "portsAttributes": {
+    "80": {
+      "label": "WordPress",
+      "onAutoForward": "openPreview"
+    },
+    "8080": {
+      "label": "phpMyAdmin",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "service mysql start && service apache2 start && sleep 15 && mysql --user=root -e \"ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpass'; CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'rootpass'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;\" && mysql --user=root --password=rootpass -e \"CREATE DATABASE IF NOT EXISTS wp_db; CREATE DATABASE IF NOT EXISTS phpmyadmin; CREATE USER IF NOT EXISTS 'wp_user'@'%' IDENTIFIED BY 'wppass'; GRANT ALL PRIVILEGES ON wp_db.* TO 'wp_user'@'%'; CREATE USER IF NOT EXISTS 'pma'@'%' IDENTIFIED BY 'pmapass'; GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'pma'@'%'; GRANT ALL PRIVILEGES ON *.* TO 'pma'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;\" && mysql --user=root --password=rootpass phpmyadmin < /usr/share/phpmyadmin/sql/create_tables.sql && if [ ! -f /workspaces/${localWorkspaceFolderBasename}/wordpress/wp-config.php ]; then mkdir -p /workspaces/${localWorkspaceFolderBasename}/wordpress && wp core download --allow-root --path=/workspaces/${localWorkspaceFolderBasename}/wordpress && wp config create --dbname=wp_db --dbuser=wp_user --dbpass=wppass --dbhost=127.0.0.1 --path=/workspaces/${localWorkspaceFolderBasename}/wordpress --allow-root && wp config set WP_HOME \"https://${CODESPACE_NAME}-80.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}\" --path=/workspaces/${localWorkspaceFolderBasename}/wordpress --allow-root && wp config set WP_SITEURL \"https://${CODESPACE_NAME}-80.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}\" --path=/workspaces/${localWorkspaceFolderBasename}/wordpress --allow-root && wp core install --url=\"https://${CODESPACE_NAME}-80.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}\" --title='My WP' --admin_user='admin' --admin_password='admin123' --admin_email='admin@example.com' --path=/workspaces/${localWorkspaceFolderBasename}/wordpress --skip-email --allow-root && chown -R www-data:www-data /workspaces/${localWorkspaceFolderBasename}/wordpress && find /workspaces/${localWorkspaceFolderBasename}/wordpress -type d -exec chmod 755 {} \\; && find /workspaces/${localWorkspaceFolderBasename}/wordpress -type f -exec chmod 644 {} \\; && chmod 640 /workspaces/${localWorkspaceFolderBasename}/wordpress/wp-config.php; fi",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
