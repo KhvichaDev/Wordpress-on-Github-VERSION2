@@ -29,12 +29,8 @@
 * Codespace-ის შექმნის შემდეგ, გარემო ავტომატურად აეწყობა.
 * WordPress ხელმისაწვდომი იქნება Codespace-ის URL-ზე 80 პორტზე.
 * phpMyAdmin ხელმისაწვდომი იქნება Codespace-ის URL-ზე 8080 პორტზე.
-* Wordpress Admin:
-                  Username: admin
-                  Password: admin123
-* phpMyAdmin:
-             Username: root
-             Password: rootpass
+* Wordpress Admin: Username: admin / Password: admin123
+* phpMyAdmin: Username: root / Password: rootpass
 
 ## კონფიგურაცია
 
