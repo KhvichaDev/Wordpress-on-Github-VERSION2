@@ -1,17 +1,15 @@
-# Wordpress on Github Codespace
+# Wordpress + phpMyAdmin on Github Codespace
 
-# WordPress + phpMyAdmin Devcontainer
-
-ეს პროექტი უზრუნველყოფს მზა სამუშაო გარემოს WordPress-ისა და phpMyAdmin-ისთვის GitHub Codespaces-ში. ის ავტომატურად აკონფიგურირებს საჭირო სერვისებს და გარემოს თქვენი WordPress პროექტის სწრაფად დასაწყებად.
+ეს პროექტი უზრუნველყოფს მზა სამუშაო გარემოს WordPress-ის და phpMyAdmin-ისთვის GitHub Codespaces-ში. ის ავტომატურად აკონფიგურირებს საჭირო სერვისებს და გარემოს WordPress პროექტების სწრაფად დასაწყებად.
 
 ## აღწერა
 
 ეს devcontainer-ის კონფიგურაცია იყენებს Docker-ს, რათა შექმნას კონტეინერი, რომელშიც გაშვებულია:
 
-* **Apache:** ვებ სერვერი WordPress-ისთვის.
-* **MySQL:** მონაცემთა ბაზის სერვერი WordPress-ისა და phpMyAdmin-ისთვის.
-* **phpMyAdmin:** ვებ-ზე დაფუძნებული ინტერფეისი MySQL-ის სამართავად.
-* **WP-CLI:** ბრძანების ხაზის ინსტრუმენტი WordPress-ის სამართავად.
+* Apache: ვებ სერვერი WordPress-თვის.
+* MySQL: მონაცემთა ბაზის სერვერი WordPress-ის და phpMyAdmin-თვის.
+* phpMyAdmin: ვებზე დაფუძნებული ინტერფეისი MySQL-ის სამართავად.
+* WP-CLI: ბრძანების ხაზის ინსტრუმენტი WordPress-ის სამართავად.
 
 კონფიგურაცია ავტომატურად ასრულებს შემდეგ ნაბიჯებს კონტეინერის გაშვებისას:
 
@@ -28,24 +26,15 @@
 
 ## გამოყენება
 
-1.  დარწმუნდით, რომ გაქვთ დაინსტალირებული GitHub Codespaces გაფართოება თქვენს VS Code-ში.
-2.  გახსენით თქვენი WordPress პროექტის რეპოზიტორია VS Code-ში.
-3.  დააჭირეთ `Ctrl+Shift+P` (ან `Cmd+Shift+P` macOS-ზე) და აირჩიეთ "Codespaces: Create New Codespace".
-4.  აირჩიეთ "Use an existing devcontainer configuration file".
-5.  Codespace-ის შექმნის შემდეგ, გარემო ავტომატურად აეწყობა.
-6.  WordPress ხელმისაწვდომი იქნება თქვენი Codespace-ის URL-ზე 80 პორტზე (ჩვეულებრივ, ავტომატურად იხსნება).
-7.  phpMyAdmin ხელმისაწვდომი იქნება თქვენი Codespace-ის URL-ზე 8080 პორტზე.
-
-## პორტები
-
-* **80:** WordPress
-* **8080:** phpMyAdmin
-
-## წინაპირობები
-
-* GitHub-ის ანგარიში
-* VS Code დაინსტალირებული
-* GitHub Codespaces გაფართოება VS Code-ში
+* Codespace-ის შექმნის შემდეგ, გარემო ავტომატურად აეწყობა.
+* WordPress ხელმისაწვდომი იქნება Codespace-ის URL-ზე 80 პორტზე.
+* phpMyAdmin ხელმისაწვდომი იქნება Codespace-ის URL-ზე 8080 პორტზე.
+* Wordpress Admin:
+                  Username: admin
+                  Password: admin123
+* phpMyAdmin:
+             Username: root
+             Password: rootpass
 
 ## კონფიგურაცია
 
